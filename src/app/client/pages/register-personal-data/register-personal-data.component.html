@@ -1,0 +1,53 @@
+<div class="flex justify-center flex-wrap">
+  <!-- Formulario -->
+  <div class="w-full md:w-2/3 p-4">
+    <mat-card class="p-6">
+      <h2 class="text-xl font-bold text-center mb-6">Datos personales</h2>
+      <form [formGroup]="personalDataForm" (ngSubmit)="onSubmit()" class="space-y-3">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" placeholder="Ingrese su nombre">
+          <mat-error *ngIf="personalDataForm.get('nombre')!.invalid && (personalDataForm.get('nombre')!.dirty || personalDataForm.get('nombre')!.touched)">
+            El nombre es requerido.
+          </mat-error>
+        </mat-form-field>
+
+        <div class="flex flex-col md:flex-row gap-4">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Apellido Paterno</mat-label>
+            <input matInput formControlName="apellidoPaterno" placeholder="Ingrese su apellido paterno">
+            <mat-error *ngIf="personalDataForm.get('apellidoPaterno')!.invalid && (personalDataForm.get('apellidoPaterno')!.dirty || personalDataForm.get('apellidoPaterno')!.touched)">
+              El apellido paterno es requerido.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Apellido Materno</mat-label>
+            <input matInput formControlName="apellidoMaterno" placeholder="Ingrese su apellido materno">
+            <mat-error *ngIf="personalDataForm.get('apellidoMaterno')!.invalid && (personalDataForm.get('apellidoMaterno')!.dirty || personalDataForm.get('apellidoMaterno')!.touched)">
+              El apellido materno es requerido.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Número Telefónico</mat-label>
+          <input matInput formControlName="telefono" placeholder="Ingrese su número telefónico" type="tel">
+          <mat-error class="-mt-5" *ngIf="personalDataForm.get('telefono')!.invalid && (personalDataForm.get('telefono')!.dirty || personalDataForm.get('telefono')!.touched)">
+            <div *ngIf="personalDataForm.get('telefono')!.errors?.['required']">
+              El número telefónico es requerido.
+            </div>
+            <div *ngIf="personalDataForm.get('telefono')!.errors?.['pattern']">
+              El formato del número telefónico no es válido.
+            </div>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="flex justify-center space-x-4 pt-6">
+          <button mat-raised-button color="primary" (click)="goBack()">Regresar</button>
+          <button mat-raised-button color="primary" type="submit">Continuar</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

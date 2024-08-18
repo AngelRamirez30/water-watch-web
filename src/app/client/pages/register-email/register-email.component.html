@@ -1,0 +1,39 @@
+<div class="flex flex-col items-center justify-start min-h-screen p-4 bg-gray-100">
+  <div class="w-full max-w-md mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <h1 class="text-2xl font-bold mb-6 text-center">¡Cita ya tu Instalación!</h1>
+    <form [formGroup]="emailForm" (ngSubmit)="redirectToPersonalData()" class="space-y-4">
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Correo electrónico</mat-label>
+        <input
+          formControlName="email"
+          matInput
+          type="email"
+          placeholder="Correo electrónico"
+        />
+        <mat-icon matPrefix>mail</mat-icon>
+        <mat-error class="-mt-4" *ngIf="emailForm.get('email')!.invalid && (emailForm.get('email')!.dirty || emailForm.get('email')!.touched)">
+          <div *ngIf="emailForm.get('email')!.errors?.['required']">
+            El correo electrónico es requerido.
+          </div>
+          <div *ngIf="emailForm.get('email')!.errors?.['email']">
+            El formato del correo electrónico no es válido.
+          </div>
+        </mat-error>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="w-full mb-6"
+      >
+        CONTINUAR
+      </button>
+      <p class="text-center mt-4">
+        ¿Ya tienes una cuenta?
+        <button mat-raised-button color="primary" (click)="openLoginDialog()" class="ml-2">
+          Inicia sesión
+        </button>
+      </p>
+    </form>
+  </div>
+</div>

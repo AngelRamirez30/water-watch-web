@@ -1,0 +1,63 @@
+<div class="flex flex-col items-center p-4 bg-gray-100 min-h-screen">
+  <div class="w-full md:w-2/3 p-4 bg-white shadow-lg rounded-lg">
+
+    <h2 class="text-2xl font-bold mb-6 text-center">Datos del Domicilio</h2>
+
+    <form [formGroup]="addressForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Estado</mat-label>
+          <input matInput formControlName="estado" placeholder="Ingrese su estado">
+          <mat-error *ngIf="addressForm.get('estado')!.invalid && (addressForm.get('estado')!.dirty || addressForm.get('estado')!.touched)">
+            El estado es requerido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Municipio</mat-label>
+          <input matInput formControlName="municipio" placeholder="Ingrese su municipio">
+          <mat-error *ngIf="addressForm.get('municipio')!.invalid && (addressForm.get('municipio')!.dirty || addressForm.get('municipio')!.touched)">
+            El municipio es requerido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Calle</mat-label>
+          <input matInput formControlName="calle" placeholder="Ingrese su calle">
+          <mat-error *ngIf="addressForm.get('calle')!.invalid && (addressForm.get('calle')!.dirty || addressForm.get('calle')!.touched)">
+            La calle es requerida.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Colonia</mat-label>
+          <input matInput formControlName="colonia" placeholder="Ingrese su colonia">
+          <mat-error *ngIf="addressForm.get('colonia')!.invalid && (addressForm.get('colonia')!.dirty || addressForm.get('colonia')!.touched)">
+            La colonia es requerida.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Código Postal</mat-label>
+          <input matInput formControlName="codigoPostal" placeholder="Ingrese su código postal">
+          <mat-error *ngIf="addressForm.get('codigoPostal')!.invalid && (addressForm.get('codigoPostal')!.dirty || addressForm.get('codigoPostal')!.touched)">
+            El código postal es requerido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Número de Casa</mat-label>
+          <input matInput formControlName="numeroCasa" placeholder="Ingrese su número de casa">
+          <mat-error *ngIf="addressForm.get('numeroCasa')!.invalid && (addressForm.get('numeroCasa')!.dirty || addressForm.get('numeroCasa')!.touched)">
+            El número de casa es requerido.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="flex justify-center gap-4 mt-6">
+        <a mat-raised-button color="primary" [routerLink]="'/register-personal-data'">Regresar</a>
+        <button mat-raised-button color="primary" type="submit">Continuar</button>
+      </div>
+    </form>
+  </div>
+</div>

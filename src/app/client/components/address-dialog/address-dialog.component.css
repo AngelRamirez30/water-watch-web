@@ -1,0 +1,11 @@
+/* Asegúrate de que el contenedor del diálogo tenga un tamaño máximo */
+mat-dialog-content {
+  max-height: 80vh; /* Ajusta según sea necesario */
+  overflow: auto;
+}
+
+/* Puedes ajustar el estilo del contenedor de acciones también */
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
