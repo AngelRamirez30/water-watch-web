@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   imagesRoutes = {
     header: '../../../../assets/img/rotoplas.png',
-    eureka: '../../../../assets/img/eureka.png',
+    eureka: '../../../../assets/img/app_water.png',
     img1: '../../../../assets/img/img1.png',
     img2: '../../../../assets/img/img2.png',
     img3: '../../../../assets/img/img3.png',
