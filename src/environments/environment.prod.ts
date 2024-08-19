@@ -2,5 +2,5 @@
 // environment.prod.ts
 export const environment = {
   production: true,
-  apiUrl: process.env.API_URL
+  apiUrl: 'https://3.149.242.43:6969'
 };
