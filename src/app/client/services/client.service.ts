@@ -18,7 +18,7 @@ import { UtilsService } from '../../shared/services/utils.service';
 })
 export class ClientService {
 
-  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.checkLoginStatus());
+  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
   public registerData: RegisterClientRequest = {
@@ -52,9 +52,10 @@ export class ClientService {
     // Verifica el estado de inicio de sesión al iniciar el servicio
     this.utils.checkTokenValidity().subscribe(response => {
       this.isLoggedInSubject.next(response.is_valid_token);
-      if (response.is_valid_token) {
+      if (response.is_valid_token && response.type_of_user === 'client')
         this.router.navigateByUrl('/home');
-      }
+      if(response.is_valid_token && response.type_of_user === 'employee')
+        this.router.navigateByUrl('/employees');
     });
   }
 
@@ -166,11 +167,6 @@ export class ClientService {
     this.authService.logout();
   }
 
-  private checkLoginStatus(): boolean {
-    const token = this.cookieService.get('authToken');
-    return !!token;
-  }
-
   private setLoginStatus(status: boolean): void {
     this.isLoggedInSubject.next(status);
   }
@@ -181,5 +177,5 @@ export class ClientService {
     });
   }
 
-  
+
 }

@@ -6,6 +6,7 @@ import { RegisterEmailComponent } from './pages/register-email/register-email.co
 import { RegisterPersonalDataComponent } from './pages/register-personal-data/register-personal-data.component';
 import { RegisterAddressComponent } from './pages/register-address/register-address.component';
 import { RegisterCredentialsComponent } from './pages/register-credentials/register-credentials.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), NgxMaterialTimepickerModule],
   exports: [RouterModule]
 })
 export class ClientRoutingModule { }

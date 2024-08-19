@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ValidateTokenResponse } from '../interfaces/validateTokenResponse';
 import { BaseApiService } from '../../services/base-api.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -19,7 +19,6 @@ export class UtilsService {
   private baseUrl: string = environment.apiUrl;
 
   public checkTokenValidity(): Observable<ValidateTokenResponse> {
-    console.log(this.baseUrl);
     return this.http.get<ValidateTokenResponse>(`${this.baseUrl}/validate-token`);
   }
 

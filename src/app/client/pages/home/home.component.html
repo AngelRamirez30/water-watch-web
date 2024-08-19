@@ -1,101 +1,144 @@
-<div class="w-full mx-auto mt-16">
-  <div class="text-center mb-4">
-    <img class="w-full h-fit mx-auto" [src]="imagesRoutes.header" alt="">
-    <img class="w-full mt-4" [src]="imagesRoutes.regtangle2" alt="">
-  </div>
+<div class="w-full mx-auto">
   @if(isLoggedIn){
-    <div class="max-w-xl mx-auto">
-      <mat-card class="shadow-lg rounded-lg">
-        <mat-card-header>
-          <mat-card-title class="text-xl font-semibold">Agendar Cita</mat-card-title>
-        </mat-card-header>
-        <div class="flex flex-col md:flex-row items-center">
-          <mat-card-content class="p-4 md:w-1/2">
-            <img src="../../../../assets/img/agendarCita.png" alt="Calendar illustration" class="w-full rounded-md">
-          </mat-card-content>
-          <div>
-            <p class="text-gray-700">No hay citas pendientes</p>
-            <mat-card-actions class="flex flex-row items-center justify-center mb-8">
-              <button (click)="openCitaDialog()" mat-raised-button color="primary">Crea una cita</button>
-            </mat-card-actions>
-          </div>
-        </div>
+  <div class="max-w-xl mx-auto">
+    <mat-card class="shadow-lg rounded-lg">
+      <mat-card-header>
+        <mat-card-title class="text-xl font-semibold"
+          >Agendar Cita</mat-card-title
+        >
+      </mat-card-header>
+      <div class="flex flex-col md:flex-row items-center">
+        <mat-card-content class="p-4 md:w-1/2">
+          <img
+            src="../../../../assets/img/agendarCita.png"
+            alt="Calendar illustration"
+            class="w-full rounded-md"
+          />
+        </mat-card-content>
+        <mat-spinner
+          *ngIf="!isLoaded"
+          class="mx-auto"
+          diameter="50"
+        ></mat-spinner>
+        <div *ngIf="isLoaded && !pendingAppointment">
+          <p class="text-gray-700">No hay citas pendientes</p>
+          <mat-card-actions
 
-      </mat-card>
-    </div>
+            class="flex flex-row items-center justify-center mb-8"
+          >
+            <button
+              (click)="openCitaDialog()"
+              mat-raised-button
+              color="primary"
+            >
+              Crea una cita
+            </button>
+          </mat-card-actions>
+        </div>
+        <div *ngIf="isLoaded && pendingAppointment" class="mb-8">
+          <h3>Cita pendiente</h3>
+          <p>Empleado: {{ employeeAsigned }}</p>
+          <p>Fecha: {{ pendingAppointment.requested_date | date:'short' }}</p>
+          <p>Detalles: {{ pendingAppointment.details }}</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
   }
-  <section class="bg-gray-100 py-8">
-    <div class="container mx-auto text-center">
-      <img class="w-1/2 mx-auto" [src]="imagesRoutes.eureka" alt="">
-      <div class="mt-4">
-        <h2 class="text-4xl font-bold">WaterWatch</h2>
+  <section class="bg-gray-100 min-h-screen ">
+    <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-center text-center md:text-left">
+      <div class="w-[min(500px,90%)] mb-4 md:mb-0 ml-14 md:ml-0 md:mt-10">
+        <img class="mx-auto" [src]="imagesRoutes.eureka" alt="Tinaco marca eureka" />
+      </div>
+      <div class="w-full md:w-[min(500px,90%)]">
+        <h2 class="text-3xl md:text-4xl font-bold">WaterWatch</h2>
         <p class="mt-4 text-lg">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque placeat consequatur iste adipisci
-          animi architecto et nam aliquam quos. Ad eos, magnam officiis pariatur atque eveniet recusandae aperiam
-          consectetur possimus.
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque placeat consequatur iste adipisci
-          animi architecto et nam aliquam quos. Ad eos, magnam officiis pariatur atque eveniet recusandae aperiam
-          consectetur possimus.
+          <b>WaterWatch</b> es una solución tecnológica avanzada diseñada para
+          monitorear continuamente la calidad y cantidad del agua en los
+          sistemas de almacenamiento. Utilizando sensores para medir parámetros
+          críticos como el pH y el nivel del agua, <b>WaterWatch</b> garantiza una
+          gestión hídrica eficiente y segura. Con una infraestructura que
+          integra hardware y software.
         </p>
       </div>
     </div>
   </section>
 
-  <h2 class="text-3xl font-semibold text-center my-8">Cuáles son los beneficios de WaterWatch</h2>
+  <h2 class="text-3xl mt-16 font-semibold text-center my-8">
+    Cuáles son los beneficios de WaterWatch
+  </h2>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
-    <div>
-      <img class="mx-auto" [src]="imagesRoutes.img1" alt="">
+  <div class="flex flex-wrap justify-center gap-8 text-center mb-16">
+    <div class="w-full sm:w-[min(300px,70%)] md:w-[min(300px,90%)]">
+      <img class="mx-auto" [src]="imagesRoutes.img1" alt="Monitoreo 24 hrs" />
       <p class="mt-2 text-lg">Monitoreo 24 hrs</p>
     </div>
-    <div>
-      <img class="mx-auto" [src]="imagesRoutes.img2" alt="">
+    <div class="w-full sm:w-[min(300px,70%)] md:w-[min(300px,90%)]">
+      <img class="mx-auto" [src]="imagesRoutes.img2" alt="Calidad de agua" />
       <p class="mt-2 text-lg">Calidad de agua</p>
     </div>
-    <div>
-      <img class="mx-auto" [src]="imagesRoutes.img3" alt="">
+    <div class="w-full sm:w-[min(300px,70%)] md:w-[min(300px,90%)]">
+      <img class="mx-auto" [src]="imagesRoutes.img3" alt="Detección de irregularidades" />
       <p class="mt-2 text-lg">Detección de irregularidades</p>
     </div>
   </div>
 
-  <img class="w-full mt-8" [src]="imagesRoutes.regtangle2" alt="">
+
   @if (!isLoggedIn) {
-    <section class="bg-gray-100">
-      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between content-center">
-        <div class="text-center  placeholder:mb-8 lg:mb-0">
-          <h3 class="text-2xl font-bold">Crea una cuenta y agenda tu cita para la instalación!</h3>
-          <div class="mt-4 flex items-center justify-center">
-            <form [formGroup]="emailForm" (ngSubmit)="redirectToRegister()">
-              <div class="flex items-center">
-                <input
-                  formControlName="email"
-                  type="email"
-                  class="form-input border rounded-l-lg p-2"
-                  placeholder="Correo electrónico">
-                <button
-                  mat-raised-button
-                  type="submit"
-                  color="primary"
-                  class="ml-4">Instalación
-                </button>
+  <section class="bg-gray-100">
+    <div
+      class="container mx-auto flex flex-col lg:flex-row items-center justify-between content-center"
+    >
+      <div class="text-center placeholder:mb-8 lg:mb-0">
+        <h3 class="text-2xl font-bold">
+          Crea una cuenta y agenda tu cita para la instalación!
+        </h3>
+        <div class="mt-4 flex items-center justify-center">
+          <form [formGroup]="emailForm" (ngSubmit)="redirectToRegister()">
+            <div class="flex items-center">
+              <input
+                formControlName="email"
+                type="email"
+                class="form-input border rounded-l-lg p-2"
+                placeholder="Correo electrónico"
+              />
+              <button
+                mat-raised-button
+                type="submit"
+                color="primary"
+                class="ml-4"
+              >
+                Instalación
+              </button>
+            </div>
+            <div
+              *ngIf="
+                emailForm.get('email')!.invalid &&
+                (emailForm.get('email')!.dirty ||
+                  emailForm.get('email')!.touched)
+              "
+              class="mt-2 text-red-500 text-sm"
+            >
+              <div *ngIf="emailForm.get('email')!.errors?.['required']">
+                El correo electrónico es requerido.
               </div>
-              <div *ngIf="emailForm.get('email')!.invalid && (emailForm.get('email')!.dirty || emailForm.get('email')!.touched)" class="mt-2 text-red-500 text-sm">
-                <div *ngIf="emailForm.get('email')!.errors?.['required']">
-                  El correo electrónico es requerido.
-                </div>
-                <div *ngIf="emailForm.get('email')!.errors?.['email']">
-                  El formato del correo electrónico no es válido.
-                </div>
+              <div *ngIf="emailForm.get('email')!.errors?.['email']">
+                El formato del correo electrónico no es válido.
               </div>
-            </form>
-          </div>
-        </div>
-        <div class="text-center">
-          <img class="mx-auto lg:mx-0" [src]="imagesRoutes.logowaterwatch" alt="Waterwatch">
-          <p class="text-lg font-semibold mt-2">WaterWatch</p>
+            </div>
+          </form>
         </div>
       </div>
-    </section>
+      <div class="text-center">
+        <img
+          class="mx-auto lg:mx-0"
+          [src]="imagesRoutes.logowaterwatch"
+          alt="Waterwatch"
+        />
+        <p class="text-lg font-semibold mt-2">WaterWatch</p>
+      </div>
+    </div>
+  </section>
 
   }
 </div>

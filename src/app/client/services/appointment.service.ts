@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseApiService } from '../../services/base-api.service';
-import { Appointment } from '../interfaces/appointment.interface';
+import { Appointment, PendingAppointment } from '../interfaces/appointment.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -20,8 +20,12 @@ export class AppointmentService {
     return this.http.get<Appointment[]>(`${this.baseUrl}/get-pending-installation-appointment`);
   }
 
-  addAppointment(appointment: Appointment):Observable<Appointment> {
-    return this.http.post<Appointment>(`${this.baseUrl}/create-installation-appointment`, appointment);
+  getPendingAppointment():Observable<PendingAppointment> {
+    return this.http.get<PendingAppointment>(`${this.baseUrl}/get-pending-installation-appointment`);
+  }
+
+  addAppointment(appointment: Appointment):Observable<{message: string, token: string}> {
+    return this.http.post<{message: string, token: string}>(`${this.baseUrl}/create-installation-appointment`, appointment);
   }
 
   updateAppointment(appointment: Appointment):Observable<{message: string, token: string}> {

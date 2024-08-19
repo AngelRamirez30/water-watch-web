@@ -1,0 +1,61 @@
+<mat-sidenav-container fullscreen>
+  <!-- Sidenav -->
+  <mat-sidenav #sidenav mode="over" [ngStyle]="{ width: '250px', background: 'white' }" class="p-0 bg-slate-200 text-white">
+    <div class="mt-4 mb-2 text-center text-semibold text-indigo-500">
+      <span class="text-2xl">WaterWatch</span>
+    </div>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of sidebarItems" [routerLink]="item.url" (click)="sidenav.toggle()">
+        <div class="flex items-center gap-2">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span mat-line>{{ item.name }}</span>
+        </div>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Sidenav Content -->
+  <mat-sidenav-content>
+    <!-- Main Toolbar -->
+    <mat-toolbar color="primary" class="fixed top-0 left-0 w-full z-10">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="w-full flex justify-between items-center">
+        <!-- Logo and Login Button -->
+        <div class="flex items-center">
+          <a routerLink="/">
+            <img class="w-12" src="../../../../assets/img/logo.png" alt="Logo">
+          </a>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="flex items-center space-x-4">
+          <a href="#" class="text-white text-xl">
+            <mat-icon>tiktok</mat-icon>
+          </a>
+          <a href="#" class="text-white text-xl">
+            <mat-icon>facebook</mat-icon>
+          </a>
+          @if (onCellphoneSize()) {
+            <button class="my-4" mat-mini-fab *ngIf="!isLoggedIn" (click)="openLoginDialog()"><mat-icon>login</mat-icon></button>
+            <button class="my-4" mat-mini-fab *ngIf="isLoggedIn" (click)="openLogoutConfirmation()"><mat-icon>logout</mat-icon></button>
+
+          }@else {
+            <button mat-raised-button color="accent" class="ml-4" *ngIf="!isLoggedIn" (click)="openLoginDialog()">Iniciar sesión</button>
+            <button mat-raised-button color="accent" class="ml-4" *ngIf="isLoggedIn"  (click)="openLogoutConfirmation()">Cerrar sesión</button>
+          }
+        </div>
+      </div>
+    </mat-toolbar>
+
+    <!-- Main Content -->
+    <div class="w-full mx-auto mt-16">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- Footer -->
+  <shared-footer></shared-footer>
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>

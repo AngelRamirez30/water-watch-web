@@ -5,6 +5,8 @@ import { LayoutClientPageComponent } from '../layout-client-page/layout-client-p
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CitaDialogComponent } from '../../components/cita-dialog/cita-dialog.component';
+import { AppointmentService } from '../../services/appointment.service';
+import { PendingAppointment } from '../../interfaces/appointment.interface';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +17,10 @@ export class HomeComponent implements OnInit {
 
   public isLoggedIn!: boolean;
   public emailForm: FormGroup;
+
+  isLoaded = false;
+
+  public pendingAppointment?: PendingAppointment;
 
   imagesRoutes = {
     header: '../../../../assets/img/rotoplas.png',
@@ -30,6 +36,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private clientService: ClientService,
+    private appoinmentService: AppointmentService,
     private fb: FormBuilder
   ) {
     this.emailForm = this.fb.group({
@@ -41,11 +48,17 @@ export class HomeComponent implements OnInit {
     this.clientService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     });
+    this.getPendingAppointment();
   }
 
   openCitaDialog(): void {
-    this.dialog.open(CitaDialogComponent, {
+    const dialogRef = this.dialog.open(CitaDialogComponent, {
       data: {}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.getPendingAppointment();
+      }
     });
   }
 
@@ -57,5 +70,27 @@ export class HomeComponent implements OnInit {
       this.router.navigateByUrl('/register-personal-data');
     }
     this.router.navigateByUrl('/register-email');
+  }
+
+  getPendingAppointment(): void {
+    this.isLoaded = false;
+    this.appoinmentService.getPendingAppointment().subscribe(
+      (appointment) => {
+        this.isLoaded = true;
+        if(appointment) {
+          this.pendingAppointment = appointment;
+        }
+      }, (error) => {
+        this.isLoaded = true;
+      }
+    );
+  }
+
+  get employeeAsigned(): string {
+    if(this.pendingAppointment) {
+      if(this.pendingAppointment.employee_id === 0) return 'Sin asignar';
+      return this.pendingAppointment.employee_id + "";
+    }
+    return '';
   }
 }
