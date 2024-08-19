@@ -9,11 +9,8 @@ const routes: Routes = [
     component: LayoutPageComponent,
     children: [
       {path: 'home', component: HomePageComponent},
-      {path: '**', redirectTo: ''}
+      {path: '', redirectTo: 'home', pathMatch: 'full'}
     ]
-  },
-  {
-    path: '**', redirectTo: ''
   }
 ];
 

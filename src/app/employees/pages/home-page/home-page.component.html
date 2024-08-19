@@ -1,1 +1,37 @@
-<p>home-page works!</p>
+<div *ngIf="isLoggedIn" class="w-full h-full flex flex-col gap-8 justify-start items-center py-8">
+  <h2 *ngIf="assignedAppointments.length === 0 && isLoaded">No cuenta con citas asignadas</h2>
+  @if (assignedAppointments.length > 0 && isLoaded) {
+    <div>
+      <h2 class="text-center">Citas Asignadas</h2>
+      <div class="flex flex-wrap">
+        <appointment-asigned-card (refresData)="loadData($event)"
+          *ngFor="let appointment of assignedAppointments"
+          [appointment]="appointment"
+        ></appointment-asigned-card>
+      </div>
+    </div>
+  }
+  <h2 class="" *ngIf="notAssignedAppointments.length === 0 && isLoaded">No hay citas sin asignar</h2>
+  @if (notAssignedAppointments.length > 0 && isLoaded) {
+    <div>
+      <h2 class="mt-8 text-center">Citas sin asignar</h2>
+      <div class="flex flex-wrap">
+        <appointment-not-asigned-card (acceptedAppointment)="loadData($event)"
+            *ngFor="let appointment of notAssignedAppointments"
+            [appointment]="appointment"
+        ></appointment-not-asigned-card>
+      </div>
+    </div>
+
+  }
+  <mat-spinner *ngIf="!isLoaded"></mat-spinner>
+</div>
+<div *ngIf="!isLoggedIn" class="w-full flex flex-col flex-wrap justify-center items-center">
+  <h2>Por favor inicie sesión para ver sus citas asignadas</h2>
+  <div class="flex flex-wrap gap-4">
+    <p>¿No eres empleado? Regresa al Home</p>
+    <button mat-raised-button color="primary" routerLink="/home">Regresar</button>
+  </div>
+
+</div>
+

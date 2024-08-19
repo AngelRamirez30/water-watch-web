@@ -4,7 +4,7 @@ import { Address } from '../../interfaces/address.interface';
 import { AddressDialogComponent } from '../address-dialog/address-dialog.component';
 import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { AdressService } from '../../services/adress.service';
-import { AppointmentService } from '../../services/appointment.service';
+import { AppointmentService } from '../../../shared/services/appointment.service';
 import { Appointment } from '../../interfaces/appointment.interface';
 import { ClientService } from '../../services/client.service';
 

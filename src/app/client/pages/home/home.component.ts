@@ -5,7 +5,7 @@ import { LayoutClientPageComponent } from '../layout-client-page/layout-client-p
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CitaDialogComponent } from '../../components/cita-dialog/cita-dialog.component';
-import { AppointmentService } from '../../services/appointment.service';
+import { AppointmentService } from '../../../shared/services/appointment.service';
 import { PendingAppointment } from '../../interfaces/appointment.interface';
 
 @Component({
@@ -78,6 +78,7 @@ export class HomeComponent implements OnInit {
       (appointment) => {
         this.isLoaded = true;
         if(appointment) {
+          console.log(appointment);
           this.pendingAppointment = appointment;
         }
       }, (error) => {

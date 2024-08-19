@@ -18,11 +18,9 @@ const routes: Routes = [
       { path: 'register-personal-data', component: RegisterPersonalDataComponent },
       { path: 'register-address', component: RegisterAddressComponent },
       { path: 'register-credentials', component: RegisterCredentialsComponent },
-      { path: '**', redirectTo: 'home', pathMatch: 'full' },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

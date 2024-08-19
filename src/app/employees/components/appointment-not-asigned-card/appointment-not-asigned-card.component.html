@@ -1,0 +1,14 @@
+<div class="bg-white shadow-md rounded-lg p-6 max-w-sm mx-auto">
+  <h3 class="text-xl font-semibold mb-2">Tipo de cita:</h3>
+  <p class="mb-4">{{ typeOfAppointment }}</p>
+
+  <p class="font-bold">Fecha y hora programada</p>
+  <p class="mb-4">{{ appointment.requested_date | date:'short' }}</p>
+
+  <div class="flex gap-2">
+    <button (click)="openConfirmationDialog()" mat-raised-button color="primary" >
+      Aceptar
+    </button>
+
+  </div>
+</div>

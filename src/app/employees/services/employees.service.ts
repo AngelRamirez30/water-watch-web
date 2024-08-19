@@ -67,10 +67,9 @@ export class EmployeesService {
     this.authService.login(username, password, 'employee').subscribe(
       response => {
         if (response && 'token' in response) {
-          this.cookieService.set('employeeToken', response.token, 3);
+          this.cookieService.set('authToken', response.token, 3);
           this.setLoginStatus(true);
           this.showMessage('Inicio de sesión exitoso');
-          this.router.navigateByUrl('/home');
         } else {
           this.showMessage('Error de inicio de sesión');
         }

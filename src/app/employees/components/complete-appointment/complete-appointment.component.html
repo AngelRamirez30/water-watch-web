@@ -1,0 +1,70 @@
+<h1 class="text-3xl font-bold mb-6 text-center">Completar Cita</h1>
+<div class="p-6">
+  <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Serial del dispositivo IoT</mat-label>
+        <input matInput formControlName="serial" placeholder="Ingrese el serial del dispositivo IoT" />
+        <mat-error *ngIf="appointmentForm.get('serial')!.hasError('required')">
+          Serial es obligatorio.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div>
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name" placeholder="Ingrese el nombre" />
+          <mat-error *ngIf="appointmentForm.get('name')!.hasError('required')">
+            Nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Capacidad</mat-label>
+          <input matInput formControlName="capacity" placeholder="Ingrese la capacidad [litros]" />
+          <mat-error *ngIf="appointmentForm.get('capacity')!.hasError('required')">
+            Capacidad es obligatoria.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div>
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Diámetro</mat-label>
+          <input matInput formControlName="diameter" placeholder="Ingrese el diámetro [cm]" />
+          <mat-error *ngIf="appointmentForm.get('diameter')!.hasError('required')">
+            Diámetro es obligatorio.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Altura</mat-label>
+          <input matInput formControlName="height" placeholder="Ingrese la altura [cm]" />
+          <mat-error *ngIf="appointmentForm.get('height')!.hasError('required')">
+            Altura es obligatoria.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="description" rows="3" placeholder="Ingrese la descripción"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="flex justify-end gap-4">
+      <button mat-button (click)="onClose()">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="appointmentForm.invalid">Guardar</button>
+    </div>
+  </form>
+</div>

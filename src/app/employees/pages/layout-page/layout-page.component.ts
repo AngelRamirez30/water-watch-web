@@ -14,12 +14,6 @@ import { CookieService } from 'ngx-cookie-service';
 export class LayoutPageComponent implements OnInit {
   public isLoggedIn = false;
 
-  sidebarItems = [
-    { name: 'Home', icon: 'home', url: '/home' },
-    { name: 'Profile', icon: 'person', url: '/profile' },
-    { name: 'Settings', icon: 'settings', url: '/settings' }
-  ]
-
   constructor(
     private employeesService: EmployeesService,
   ) {}
