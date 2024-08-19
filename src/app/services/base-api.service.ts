@@ -8,7 +8,9 @@ export class BaseApiService {
 
   private apiUrl = environment.apiUrl;
 
-  constructor() {}
+  constructor() {
+    console.log('API URL:', this.apiUrl);
+  }
 
   public baseUrl = this.apiUrl;
 }

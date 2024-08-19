@@ -24,6 +24,7 @@
 
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            
             "outputPath": "dist/water-watch",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -44,6 +45,7 @@
           "configurations": {
 
             "production": {
+
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
