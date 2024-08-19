@@ -6,12 +6,10 @@ import { environment } from '../../environments/environment';
 })
 export class BaseApiService {
 
-  private apiUrl: string = '';
+  public baseUrl: string = '';
 
   constructor() {
-    this.apiUrl = environment.apiUrl;
-    console.log('API URL:', this.apiUrl);
+    this.baseUrl = environment.apiUrl;
+    console.log('baseUrl:', this.baseUrl)
   }
-
-  public baseUrl = this.apiUrl;
 }

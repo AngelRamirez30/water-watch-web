@@ -19,6 +19,7 @@ export class AuthService {
 
   public login(username: string, password: string, typeOfUser: string): Observable<LoginResponse | LoginErrorResponse> {
     const baseUrl = `${this.baseApiService.baseUrl}/${typeOfUser}`;
+    console.log({auth:baseUrl});
 
     const body = { username, password };
 

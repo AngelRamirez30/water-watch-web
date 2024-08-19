@@ -24,7 +24,7 @@
 
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            
+
             "outputPath": "dist/water-watch",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -49,7 +49,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "with":    "src/environments/environment.prod.ts"
                 }
               ],
               "budgets": [
@@ -75,7 +75,6 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "options": { "proxyConfig": "src/proxy.conf.json"},
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
